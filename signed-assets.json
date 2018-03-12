@@ -20,6 +20,21 @@
           "signature_algorithm": "SHA256-ECDSA"
         }
       ]
+    },
+    {
+      "chain": "Ethereum",
+      "assets": [
+        {
+          "public_key": "02d6dd5241c03bf418b333c256057ee878c34975d6abda075d58e4b9780f4a8659",
+          "signature": "27d28ff0e6d00dc4c292aaa8123f0f208d5c738a0310a644dfb8306a0e45444d77aad2298c78e52b4eae463c9164f97d80c70fc1378d46f7b4cb47f7c89335cf",
+          "signature_algorithm": "SHA256-ECDSA"
+        },
+        {
+          "public_key": "023f538de115393e2a8851b4c19f686b6bb245213c3823e69336583f1d72c53d20",
+          "signature": "ea73194399ea90e802f3139cf8cf4fb27aa2af86cce5fb7b88ead0249531194c64fc0d7b4f476af3667438f36e9d43bad0f08e0ce4e6d59b9cc90a0b1c4f4023",
+          "signature_algorithm": "SHA256-ECDSA"
+        }
+      ]
     }
   ]
 }

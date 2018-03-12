@@ -30,7 +30,7 @@ pub fn sign(sign_config: SignConfig) {
                 audited_assets.push(btc::bitcoin_sign(asset.keys, message));
             },
             "ethereum" => {
-                //audited_assets.push(eth::ethereum_sign(asset.keys, message));
+                audited_assets.push(eth::ethereum_sign(asset.keys, message));
             },
             _ => {
                 println!("Unsuported chain: {}", asset.chain);
@@ -45,7 +45,10 @@ pub fn sign(sign_config: SignConfig) {
     };
 
     let output = String::from("signed-assets.json");
-    write_json(output, result);
+    match write_json(output, result) {
+        Ok(_) => println!("Successfully signed message with keys"),
+        Err(e) => println!("Failed to sign message, Error: {:?}", e),
+    }
 }
 
 fn create_message(string_message: String) -> Message {
