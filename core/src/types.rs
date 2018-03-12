@@ -2,21 +2,29 @@
 
 #[derive(Debug, Clone)]
 pub struct SignConfig {
-    allo: bool,
+    pub file: String,
+    pub message: String,
 }
 #[derive(Clone, Debug)]
 pub struct VerifyConfig {
-    bello: bool,
+    pub file: String,
+    pub message: String,
 }
 
 impl Default for SignConfig {
     fn default() -> SignConfig {
-        SignConfig { allo: false }
+        SignConfig {
+            file: String::from(""),
+            message : String::from(""),
+        }
     }
 }
 
 impl Default for VerifyConfig {
     fn default() -> VerifyConfig {
-        VerifyConfig { bello: true }
+        VerifyConfig {
+            file: String::from(""),
+            message : String::from(""),
+        }
     }
 }

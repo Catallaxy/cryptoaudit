@@ -3,11 +3,11 @@ name = "cryptoaudit"
 version = "0.1.0"
 authors = ["Quentin Le Sceller <q.lesceller@gmail.com>"]
 
+[workspace]
+members = ["config", "core"]
+
 [dependencies]
 cryptoaudit_config = { path = "./config"}
 cryptoaudit_core = { path = "./core"}
 
-bitcoin = "0.11.0"
-rust-crypto = "0.2"
-rustc-serialize = "0.3"
-secp256k1 = "0.8.4"
+clap = "^2.23.3"

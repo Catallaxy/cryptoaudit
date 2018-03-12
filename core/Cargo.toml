@@ -3,3 +3,9 @@ name = "cryptoaudit_core"
 version = "0.1.0"
 authors = ["Quentin Le Sceller <q.lesceller@gmail.com>"]
 workspace = ".."
+
+[dependencies]
+bitcoin = "0.11.0"
+rust-crypto = "0.2"
+rustc-serialize = "0.3"
+secp256k1 = "0.8.4"
