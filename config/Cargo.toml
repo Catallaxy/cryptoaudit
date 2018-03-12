@@ -1,0 +1,8 @@
+[package]
+name = "cryptoaudit_config"
+version = "0.1.0"
+authors = ["Quentin Le Sceller <q.lesceller@gmail.com>"]
+workspace = ".."
+
+[dependencies]
+cryptoaudit_core = { path = "../core"}
