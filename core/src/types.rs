@@ -1,20 +1,9 @@
 // Copyright 2018 Catallaxy
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub enum SignatureAlgorithm{
-    SHA256_ECDSA,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub enum Chain {
-    Bitcoin,
-    Ethereum,
-    Other,
-}
-
+/// The files part aka in
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Key {
-    key: String,
+    pub key: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -23,25 +12,27 @@ pub struct Assets {
     pub keys: Vec<Key>,
 }
 
+/// The auditing types aka out
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuditedAsset {
-    public_key: String,
-    signature: String,
-    signature_algorithm: SignatureAlgorithm
+    pub public_key: String,
+    pub signature: String,
+    pub signature_algorithm: String
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuditedAssets {
-    chain: String,
-    assets: Vec<AuditedAsset>
+    pub chain: String,
+    pub assets: Vec<AuditedAsset>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RootAuditedAssets {
-    message: String,
-    audit_asset: Vec<AuditedAsset>,
+    pub message: String,
+    pub audited_assets: Vec<AuditedAssets>,
 }
 
+// Configuration types
 #[derive(Debug, Clone)]
 pub struct SignConfig {
     pub file_path: String,

@@ -1,0 +1,25 @@
+{
+  "message": "catallaxy",
+  "audited_assets": [
+    {
+      "chain": "Bitcoin",
+      "assets": [
+        {
+          "public_key": "02eb868e04f90f0297dc736c59a3e7f327e7786408bbc2201dfdf9a2d35ba5d80c",
+          "signature": "de48b2a19d687b395c66c6259073dcdd79ccdab8fe5d60cffefc284bb8db8f0858f931be508c9513dfea721550ff488a2fdd3be3f9227b86e6a3d6fff42fd102",
+          "signature_algorithm": "SHA256-ECDSA"
+        },
+        {
+          "public_key": "03a7800b4c093c94ccf3da0067960aa2fb77a60b951a687059ed3d87103b674f14",
+          "signature": "bb2e869afd69175d5a196bc9648cd9e7781d89c2b6e4a91308ff4b5ca1ba88173e04c00406bd1d15a818fb9f67e3ac473069f4c6fba8af8e32ec344332018919",
+          "signature_algorithm": "SHA256-ECDSA"
+        },
+        {
+          "public_key": "03ad7ba36f56f0acf092292b7f54cab333aade651968060e22257316deff2cd47c",
+          "signature": "f3cf7a61fa542753f4ec3b811453ef60e7cd8bbd098445a4d2aeb68267ffa3033582370d51e4591b5affe0c6795740fdee8f5af435d6df09dce93a76003ba3eb",
+          "signature_algorithm": "SHA256-ECDSA"
+        }
+      ]
+    }
+  ]
+}

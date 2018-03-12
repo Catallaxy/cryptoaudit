@@ -11,7 +11,6 @@ use secp256k1::{self, Secp256k1, Signature, Message};
 use secp256k1::key::{PublicKey, SecretKey};
 use std::{error, fmt};
 
-
 use crypto::digest::Digest;
 use crypto::sha2::Sha256;
 
@@ -71,6 +70,7 @@ fn display_compressed_wif_private_key(private_key_compressed_wif: String) {
     println!("Compact signature: {:?}",compact_signature.to_hex());
     //println!("{:?}", signature.serialize_der(&secp).to_hex());
 
+    // Verification
     match verify(message_to_sign, signature, public_key, &secp) {
         Ok(_) => println!("Signature is valid"),
         Err(_) => println!("Signature is invalid"),

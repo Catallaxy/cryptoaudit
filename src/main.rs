@@ -82,11 +82,9 @@ fn sign_command(sign_args: &ArgMatches, global_config: GlobalConfig) {
 
 	if let Some(message) = sign_args.value_of("message") {
 		sign_config.message = message.parse().unwrap();
-	} else {
-
 	}
 
-    core::example::example();
+    //core::example::example();
 	core::sign::sign(sign_config);
 }
 

@@ -10,6 +10,7 @@ extern crate serde_derive;
 extern crate serde_json;
 
 pub mod btc;
+pub mod ecdsa;
 pub mod eth;
 pub mod example;
 pub mod types;

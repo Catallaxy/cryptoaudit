@@ -10,7 +10,7 @@ use secp256k1::Message;
 
 use btc;
 use eth;
-use types::{Assets, SignConfig};
+use types::{Assets, RootAuditedAssets, AuditedAssets, SignConfig};
 
 /// Sign a JSON file containing a list of private keys and write a audits.json file
 pub fn sign(sign_config: SignConfig) {
@@ -20,21 +20,32 @@ pub fn sign(sign_config: SignConfig) {
         Err(e) => println!("Cannot read file, Error: {:?}", e),
     }
 
-    let message = create_message(sign_config.message);
+    let message = create_message(sign_config.message.clone());
+
+    let mut audited_assets: Vec<AuditedAssets> = Vec::new();
 
     for asset in assets {
         match asset.chain.to_lowercase().as_ref() {
             "bitcoin" => {
-                btc::bitcoin_sign(asset.keys, message);
+                audited_assets.push(btc::bitcoin_sign(asset.keys, message));
             },
             "ethereum" => {
-                eth::ethereum_sign(asset.keys, message);
+                //audited_assets.push(eth::ethereum_sign(asset.keys, message));
             },
             _ => {
                 println!("Unsuported chain: {}", asset.chain);
             }
         }
     }
+
+    // The final result
+    let result = RootAuditedAssets {
+        message: sign_config.message,
+        audited_assets: audited_assets,
+    };
+
+    let output = String::from("signed-assets.json");
+    write_json(output, result);
 }
 
 fn create_message(string_message: String) -> Message {
@@ -46,6 +57,15 @@ fn create_message(string_message: String) -> Message {
     sha.result(&mut hashed_message);
 
     Message::from_slice(&hashed_message).unwrap()
+}
+
+fn write_json(file_path: String, root_audited_assets: RootAuditedAssets) -> Result<(), Error> {
+    let path = Path::new(&file_path);
+    // Open the file in read-only mode.
+    let file = File::create(path).expect("Cannot create file");
+    // Read the JSON contents of the file as of vec of keys from different chains
+    let res = serde_json::to_writer_pretty(file, &root_audited_assets)?;
+    Ok(res)
 }
 
 fn read_json(file_path: String) -> Result<Vec<Assets>, Error> {

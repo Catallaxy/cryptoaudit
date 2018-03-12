@@ -2,8 +2,8 @@
 
 use secp256k1::Message;
 
-use types::Key;
+use types::{AuditedAssets};
 
-pub fn ethereum_sign(keys: Vec<Key>, message: Message) {
+/*pub fn ethereum_sign(keys: Vec<String>, message: Message) -> AuditedAssets {
 
-}
+}*/
