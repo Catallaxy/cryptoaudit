@@ -1,0 +1,35 @@
+[
+  {
+    "chain":"Bitcoin",
+    "keys":[
+      {
+        "key":"Ky4qA36DaWBfURv3FEziUd9Z5MELiaQLtKMvEH7kJouwpNnNnGaA"
+      },
+      {
+        "key":"L2eA59GuQTUAmAjxoGrFWFqtjWqxAMSRfgBzV1VHcD9h8DrHBP9H"
+      },
+      {
+        "key":"KxhHsn774GTF6mdFwnouFL5v6uKxPkxnuBtfumPd7c83PSA9z4LL"
+      }
+    ]
+  },
+  {
+    "chain":"Ethereum",
+    "keys": [
+      {
+        "key":"eff415edb6331f4f67bdb7f1ecc639da9bcc0550b100bb275c7b5b21ce3a7804"
+      },
+      {
+        "key":"9442b4b82c8011530f3a363cc87a4ea91efd53552faab2e63fd352db9367bb24"
+      }
+    ]
+  },
+  {
+    "chain":"Ripple",
+    "keys":[
+      {
+        "key":"9442b4b82c8011530f3a363cc87a4ea91efd53552faab2e63fd352db9367bb24"
+      }
+    ]
+  }
+]

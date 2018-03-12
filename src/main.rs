@@ -22,11 +22,13 @@ fn main() {
 	                     .short("f")
 	                     .long("file")
 	                     .help("The JSON file containing the private key")
+						 .required(true)
 	                     .takes_value(true))
 	                .arg(Arg::with_name("message")
 	                     .short("m")
 	                     .long("message")
 	                     .help("The message to sign")
+						 .required(true)
 	                	.takes_value(true)))
 
 	    // specification of all the client commands and options
@@ -36,11 +38,13 @@ fn main() {
 	                     .short("f")
 	                     .long("file")
 	                     .help("The JSON file containing the private key")
+						 .required(true)
 	                     .takes_value(true))
 	                .arg(Arg::with_name("message")
 	                     .short("m")
 	                     .long("message")
 	                     .help("The message to sign")
+						 .required(true)
 	                	.takes_value(true)))
 
 
@@ -72,15 +76,18 @@ fn main() {
 fn sign_command(sign_args: &ArgMatches, global_config: GlobalConfig) {
 	let mut sign_config = global_config.members.unwrap().sign_config;
 
-	if let Some(file) = sign_args.value_of("file") {
-		sign_config.file = file.parse().unwrap();
+	if let Some(file_path) = sign_args.value_of("file") {
+		sign_config.file_path = file_path.parse().unwrap();
 	}
 
 	if let Some(message) = sign_args.value_of("message") {
 		sign_config.message = message.parse().unwrap();
+	} else {
+
 	}
 
     core::example::example();
+	core::sign::sign(sign_config);
 }
 
 /// Handles the server part of the command line, mostly running, starting and
@@ -90,8 +97,8 @@ fn sign_command(sign_args: &ArgMatches, global_config: GlobalConfig) {
 fn verify_command(verify_args: &ArgMatches, global_config: GlobalConfig) {
 	let mut verify_config = global_config.members.unwrap().verify_config;
 
-	if let Some(file) = verify_args.value_of("file") {
-		verify_config.file = file.parse().unwrap();
+	if let Some(file_path) = verify_args.value_of("file") {
+		verify_config.file_path = file_path.parse().unwrap();
 	}
 
 	if let Some(message) = verify_args.value_of("message") {
