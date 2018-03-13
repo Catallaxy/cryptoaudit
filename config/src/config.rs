@@ -2,9 +2,8 @@
 
 //! Configuration file management
 
-use types::{GlobalConfig, ConfigMembers};
+use types::{ConfigMembers, GlobalConfig};
 use core::types::{SignConfig, VerifyConfig};
-
 
 /// Returns the defaults, as strewn throughout the code
 impl Default for ConfigMembers {

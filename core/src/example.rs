@@ -7,7 +7,7 @@ use bitcoin::util::address::Address;
 use bitcoin::util::hash::Hash160;
 
 use rustc_serialize::hex::{FromHex, ToHex};
-use secp256k1::{self, Secp256k1, Signature, Message};
+use secp256k1::{self, Message, Secp256k1, Signature};
 use secp256k1::key::{PublicKey, SecretKey};
 use std::{error, fmt};
 
@@ -38,7 +38,10 @@ fn display_compressed_wif_private_key(private_key_compressed_wif: String) {
     let public_key = PublicKey::from_secret_key(&secp, &secret_key)
         .map_err(Error::Secp)
         .unwrap();
-    println!("Compressed public key: {:?}", public_key.serialize().to_hex());
+    println!(
+        "Compressed public key: {:?}",
+        public_key.serialize().to_hex()
+    );
 
     let address = Address::from_key(Network::Bitcoin, &public_key, true);
     println!("Address: {:?}", address);
@@ -56,7 +59,10 @@ fn display_compressed_wif_private_key(private_key_compressed_wif: String) {
     let mut sha = Sha256::new();
     sha.input_str(message);
     println!("Signing message: {}", message);
-    println!("Effectively signing hash of the message which is: {:?}", sha.result_str());
+    println!(
+        "Effectively signing hash of the message which is: {:?}",
+        sha.result_str()
+    );
     let mut hashed_message = [0; 32];
     sha.result(&mut hashed_message);
 
@@ -67,7 +73,7 @@ fn display_compressed_wif_private_key(private_key_compressed_wif: String) {
 
     let compact_signature = signature.serialize_compact(&secp);
 
-    println!("Compact signature: {:?}",compact_signature.to_hex());
+    println!("Compact signature: {:?}", compact_signature.to_hex());
     //println!("{:?}", signature.serialize_der(&secp).to_hex());
 
     // Verification
@@ -87,8 +93,6 @@ fn display_compressed_wif_private_key(private_key_compressed_wif: String) {
         Ok(_) => println!("Signature is valid"),
         Err(_) => println!("Signature is invalid"),
     };
-
-
 }
 
 fn sign(message: Message, secret_key: SecretKey, secp: &Secp256k1) -> Result<Signature, Error> {
@@ -97,7 +101,12 @@ fn sign(message: Message, secret_key: SecretKey, secp: &Secp256k1) -> Result<Sig
     Ok(sig)
 }
 
-fn verify(message: Message, signature: Signature, public_key: PublicKey, secp: &Secp256k1) -> Result<(), Error> {
+fn verify(
+    message: Message,
+    signature: Signature,
+    public_key: PublicKey,
+    secp: &Secp256k1,
+) -> Result<(), Error> {
     println!("Verifying signature with message: {:?}", message);
     let res = secp.verify(&message, &signature, &public_key)?;
     Ok(res)
@@ -105,27 +114,27 @@ fn verify(message: Message, signature: Signature, public_key: PublicKey, secp: &
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub enum Error {
-	Secp(secp256k1::Error),
+    Secp(secp256k1::Error),
 }
 
 impl From<secp256k1::Error> for Error {
-	fn from(e: secp256k1::Error) -> Error {
-		Error::Secp(e)
-	}
+    fn from(e: secp256k1::Error) -> Error {
+        Error::Secp(e)
+    }
 }
 
 impl error::Error for Error {
-	fn description(&self) -> &str {
-		match *self {
-			_ => "some kind of keychain error",
-		}
-	}
+    fn description(&self) -> &str {
+        match *self {
+            _ => "some kind of keychain error",
+        }
+    }
 }
 
 impl fmt::Display for Error {
-	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		match *self {
-			_ => write!(f, "some kind of keychain error"),
-		}
-	}
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            _ => write!(f, "some kind of keychain error"),
+        }
+    }
 }

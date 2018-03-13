@@ -64,18 +64,18 @@ fn main() {
 /// arguments
 /// to build a proper configuration and runs Grin with that configuration.
 fn sign_command(sign_args: &ArgMatches, global_config: GlobalConfig) {
-	let mut sign_config = global_config.members.unwrap().sign_config;
+    let mut sign_config = global_config.members.unwrap().sign_config;
 
-	if let Some(file_path) = sign_args.value_of("file") {
-		sign_config.file_path = file_path.parse().unwrap();
-	}
+    if let Some(file_path) = sign_args.value_of("file") {
+        sign_config.file_path = file_path.parse().unwrap();
+    }
 
-	if let Some(message) = sign_args.value_of("message") {
-		sign_config.message = message.parse().unwrap();
-	}
+    if let Some(message) = sign_args.value_of("message") {
+        sign_config.message = message.parse().unwrap();
+    }
 
     //core::example::example();
-	core::sign::sign(sign_config);
+    core::sign::sign(sign_config);
 }
 
 /// Handles the server part of the command line, mostly running, starting and
@@ -83,14 +83,13 @@ fn sign_command(sign_args: &ArgMatches, global_config: GlobalConfig) {
 /// arguments
 /// to build a proper configuration and runs Grin with that configuration.
 fn verify_command(verify_args: &ArgMatches, global_config: GlobalConfig) {
-	let mut verify_config = global_config.members.unwrap().verify_config;
+    let mut verify_config = global_config.members.unwrap().verify_config;
 
-	if let Some(file_path) = verify_args.value_of("file") {
-		verify_config.file_path = file_path.parse().unwrap();
-	}
+    if let Some(file_path) = verify_args.value_of("file") {
+        verify_config.file_path = file_path.parse().unwrap();
+    }
 
-	if let Some(message) = verify_args.value_of("message") {
-		verify_config.message = message.parse().unwrap();
-	}
-
+    if let Some(message) = verify_args.value_of("message") {
+        verify_config.message = message.parse().unwrap();
+    }
 }

@@ -10,7 +10,7 @@ use secp256k1::Message;
 
 use currencies;
 use ecdsa;
-use types::{Assets, RootAuditedAssets, AuditedAssets, SignConfig};
+use types::{Assets, AuditedAssets, RootAuditedAssets, SignConfig};
 
 /// Sign a JSON file containing a list of private keys and write a audits.json file
 pub fn sign(sign_config: SignConfig) {
@@ -28,10 +28,10 @@ pub fn sign(sign_config: SignConfig) {
         match asset.chain.to_lowercase().as_ref() {
             "bitcoin" => {
                 audited_assets.push(ecdsa::sign_with_keys(asset.chain, asset.keys, message));
-            },
+            }
             "ethereum" => {
                 audited_assets.push(ecdsa::sign_with_keys(asset.chain, asset.keys, message));
-            },
+            }
             _ => {
                 println!("Unsuported chain: {}", asset.chain);
             }
@@ -56,7 +56,10 @@ fn get_message(string_message: String) -> Message {
     let mut sha = Sha256::new();
     sha.input_str(&string_message);
     println!("Signing message: {}", string_message);
-    println!("Effectively signing hash of the message which is: {:?}", sha.result_str());
+    println!(
+        "Effectively signing hash of the message which is: {:?}",
+        sha.result_str()
+    );
     let mut hashed_message = [0; 32];
     sha.result(&mut hashed_message);
 

@@ -17,13 +17,13 @@ pub struct Assets {
 pub struct AuditedAsset {
     pub public_key: String,
     pub signature: String,
-    pub signature_algorithm: String
+    pub signature_algorithm: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuditedAssets {
     pub chain: String,
-    pub assets: Vec<AuditedAsset>
+    pub assets: Vec<AuditedAsset>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -49,7 +49,7 @@ impl Default for SignConfig {
     fn default() -> SignConfig {
         SignConfig {
             file_path: String::from(""),
-            message : String::from(""),
+            message: String::from(""),
         }
     }
 }
@@ -58,7 +58,7 @@ impl Default for VerifyConfig {
     fn default() -> VerifyConfig {
         VerifyConfig {
             file_path: String::from(""),
-            message : String::from(""),
+            message: String::from(""),
         }
     }
 }
