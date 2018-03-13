@@ -16,7 +16,7 @@ pub fn get_secret_key(private_key_string: String, secp: &Secp256k1) -> Option<Se
         // Removing network parameters and checksum
         let private_key_hex: String =
             String::from(&private_key_hex_check[2..private_key_hex_check.len() - 2]);
-        println!("Private key: {:?}", private_key_hex);
+        //println!("Private key: {:?}", private_key_hex);
         private_key = private_key_hex.from_hex().unwrap();
 
         let secret_key = SecretKey::from_slice(&secp, &private_key).unwrap();
@@ -24,7 +24,7 @@ pub fn get_secret_key(private_key_string: String, secp: &Secp256k1) -> Option<Se
     } else if length == 64 {
         // HEX Format
         private_key = private_key_string.from_hex().unwrap();
-        println!("Private key: {:?}", private_key.to_hex());
+        //println!("Private key: {:?}", private_key.to_hex());
 
         let secret_key = SecretKey::from_slice(&secp, &private_key).unwrap();
         Some(secret_key)

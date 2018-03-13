@@ -10,6 +10,17 @@
       },
       {
         "key":"KxhHsn774GTF6mdFwnouFL5v6uKxPkxnuBtfumPd7c83PSA9z4LL"
+      },
+      {
+        "key":"52F2EE4645703FE780F1B7B82C76A6F9B64F2511CFD6756541B21B1555B853F2"
+      }
+    ]
+  },
+  {
+    "chain": "BitcoinCash",
+    "keys":[
+      {
+        "key":"L2nTAexsDsMWCYRLjC5R3XX9z4NfQD3rFcrAJVPv62EFemY8bhBo"
       }
     ]
   },

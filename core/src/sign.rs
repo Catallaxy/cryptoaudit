@@ -8,10 +8,10 @@ use crypto::digest::Digest;
 use crypto::sha2::Sha256;
 use secp256k1::Message;
 
-use currencies;
 use ecdsa;
 use types::{Assets, AuditedAssets, RootAuditedAssets, SignConfig};
 
+static SUPPORTED_CHAIN: &'static [&str] = &["bitcoin", "bitcoincash", "ethereum"];
 /// Sign a JSON file containing a list of private keys and write a audits.json file
 pub fn sign(sign_config: SignConfig) {
     let mut assets: Vec<Assets> = Vec::new();
@@ -25,16 +25,11 @@ pub fn sign(sign_config: SignConfig) {
     let mut audited_assets: Vec<AuditedAssets> = Vec::new();
 
     for asset in assets {
-        match asset.chain.to_lowercase().as_ref() {
-            "bitcoin" => {
-                audited_assets.push(ecdsa::sign_with_keys(asset.chain, asset.keys, message));
-            }
-            "ethereum" => {
-                audited_assets.push(ecdsa::sign_with_keys(asset.chain, asset.keys, message));
-            }
-            _ => {
-                println!("Unsuported chain: {}", asset.chain);
-            }
+        let chain = asset.chain.to_lowercase();
+        if (&SUPPORTED_CHAIN).into_iter().any(|v| v == &chain) {
+            audited_assets.push(ecdsa::sign_with_keys(asset.chain, asset.keys, message));
+        } else {
+            println!("Unsuported chain: {}", chain);
         }
     }
 

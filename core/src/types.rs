@@ -15,6 +15,7 @@ pub struct Assets {
 /// The auditing types aka out
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuditedAsset {
+    pub addresses: Vec<String>,
     pub public_key: String,
     pub signature: String,
     pub signature_algorithm: String,
