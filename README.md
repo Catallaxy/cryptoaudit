@@ -1,4 +1,4 @@
-# cryptoaudit
+# Cryptoaudit
 Catallaxy Cryptocurrencies Auditing suite.
 
 Supported cryptocurrencies:
