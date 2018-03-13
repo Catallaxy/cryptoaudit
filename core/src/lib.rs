@@ -15,5 +15,6 @@ pub mod example;
 pub mod types;
 pub mod sign;
 pub mod util;
+pub mod verify;
 
 pub use types::{SignConfig, VerifyConfig};

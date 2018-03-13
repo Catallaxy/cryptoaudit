@@ -72,7 +72,6 @@ fn sign_command(sign_args: &ArgMatches, global_config: GlobalConfig) {
         sign_config.message = message.parse().unwrap();
     }
 
-    //core::example::example();
     core::sign::sign(sign_config);
 }
 
@@ -90,4 +89,6 @@ fn verify_command(verify_args: &ArgMatches, global_config: GlobalConfig) {
     if let Some(message) = verify_args.value_of("message") {
         verify_config.message = message.parse().unwrap();
     }
+
+    core::verify::verify(verify_config);
 }

@@ -34,6 +34,16 @@ pub struct RootAuditedAssets {
     pub audited_assets: Vec<AuditedAssets>,
 }
 
+impl Default for RootAuditedAssets {
+    fn default() -> RootAuditedAssets {
+        RootAuditedAssets {
+            message: String::from(""),
+            message_digest: String::from(""),
+            audited_assets: Vec::new(),
+        }
+    }
+}
+
 // Configuration types
 #[derive(Debug, Clone)]
 pub struct SignConfig {

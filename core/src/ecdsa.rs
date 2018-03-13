@@ -25,7 +25,7 @@ pub fn sign_with_keys(chain: String, keys: Vec<Key>, message: Message) -> Audite
                 &secp,
             ));
         } else {
-            // If unable to get key from JSOn just write a failed json for this part
+            // If unable to get key from JSON just write a failed json for this part
             let failed_asset = AuditedAsset {
                 addresses: vec![String::from("FAILED")],
                 public_key: String::from("FAILED"),
