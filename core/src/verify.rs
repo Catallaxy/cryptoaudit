@@ -100,7 +100,7 @@ fn match_public_key_signature(message: Message, audited_asset: AuditedAsset, sec
 
     match verify_ecdsa(message, signature, public_key, &secp) {
         Ok(_) => {
-            println!("Signature is valid");
+            //println!("Signature is valid");
             true
         },
         Err(_) => {
@@ -116,11 +116,6 @@ fn match_public_key_signature(message: Message, audited_asset: AuditedAsset, sec
 fn get_message(string_message: String) -> Message {
     let mut sha = Sha256::new();
     sha.input_str(&string_message);
-    println!("Verifying message: {}", string_message);
-    println!(
-        "Effectively verifying hash of the message which is: {:?}",
-        sha.result_str()
-    );
     let mut hashed_message = [0; 32];
     sha.result(&mut hashed_message);
 
@@ -148,7 +143,7 @@ fn verify_ecdsa(
     public_key: PublicKey,
     secp: &Secp256k1,
 ) -> Result<(), Error> {
-    println!("Verifying signature with message: {:?}", message);
+    //println!("Verifying signature with message: {:?}", message);
     let res = secp.verify(&message, &signature, &public_key).unwrap();
     Ok(res)
 }
