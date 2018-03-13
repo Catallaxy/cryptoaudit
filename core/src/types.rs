@@ -29,6 +29,7 @@ pub struct AuditedAssets {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RootAuditedAssets {
     pub message: String,
+    pub message_digest: String,
     pub audited_assets: Vec<AuditedAssets>,
 }
 

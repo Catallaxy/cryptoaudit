@@ -9,12 +9,12 @@ extern crate serde;
 extern crate serde_derive;
 extern crate serde_json;
 
-pub mod btc;
+pub mod currencies;
 pub mod ecdsa;
-pub mod eth;
 pub mod example;
 pub mod types;
 pub mod sign;
+pub mod util;
 
 
 pub use types::{SignConfig, VerifyConfig};

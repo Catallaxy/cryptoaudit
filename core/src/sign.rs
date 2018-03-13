@@ -8,8 +8,8 @@ use crypto::digest::Digest;
 use crypto::sha2::Sha256;
 use secp256k1::Message;
 
-use btc;
-use eth;
+use currencies;
+use ecdsa;
 use types::{Assets, RootAuditedAssets, AuditedAssets, SignConfig};
 
 /// Sign a JSON file containing a list of private keys and write a audits.json file
@@ -20,17 +20,17 @@ pub fn sign(sign_config: SignConfig) {
         Err(e) => println!("Cannot read file, Error: {:?}", e),
     }
 
-    let message = create_message(sign_config.message.clone());
+    let message = get_message(sign_config.message.clone());
 
     let mut audited_assets: Vec<AuditedAssets> = Vec::new();
 
     for asset in assets {
         match asset.chain.to_lowercase().as_ref() {
             "bitcoin" => {
-                audited_assets.push(btc::bitcoin_sign(asset.keys, message));
+                audited_assets.push(ecdsa::sign_with_keys(asset.chain, asset.keys, message));
             },
             "ethereum" => {
-                audited_assets.push(eth::ethereum_sign(asset.keys, message));
+                audited_assets.push(ecdsa::sign_with_keys(asset.chain, asset.keys, message));
             },
             _ => {
                 println!("Unsuported chain: {}", asset.chain);
@@ -40,7 +40,8 @@ pub fn sign(sign_config: SignConfig) {
 
     // The final result
     let result = RootAuditedAssets {
-        message: sign_config.message,
+        message: sign_config.message.clone(),
+        message_digest: get_message_digest(sign_config.message),
         audited_assets: audited_assets,
     };
 
@@ -51,7 +52,7 @@ pub fn sign(sign_config: SignConfig) {
     }
 }
 
-fn create_message(string_message: String) -> Message {
+fn get_message(string_message: String) -> Message {
     let mut sha = Sha256::new();
     sha.input_str(&string_message);
     println!("Signing message: {}", string_message);
@@ -60,6 +61,12 @@ fn create_message(string_message: String) -> Message {
     sha.result(&mut hashed_message);
 
     Message::from_slice(&hashed_message).unwrap()
+}
+
+fn get_message_digest(string_message: String) -> String {
+    let mut sha = Sha256::new();
+    sha.input_str(&string_message);
+    sha.result_str()
 }
 
 fn write_json(file_path: String, root_audited_assets: RootAuditedAssets) -> Result<(), Error> {

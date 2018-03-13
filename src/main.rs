@@ -13,7 +13,7 @@ fn main() {
     let args = App::new("Cryptoaudit")
 		.version("0.1")
 		.author("The Catallaxy Team")
-		.about("Catallaxy cryptocurrency auditing suite.")
+		.about("Catallaxy cryptocurrencies auditing suite.")
 
 		// specification of all the server commands and options
 	    .subcommand(SubCommand::with_name("sign")
