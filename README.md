@@ -1,5 +1,14 @@
 # cryptoaudit
-Catallaxy Cryptocurrencies Auditing suite
+Catallaxy Cryptocurrencies Auditing suite.
+
+Supported cryptocurrencies:
+- Bitcoin
+- BitcoinCash
+- All forks of Bitcoin
+- Ethereum
+- Ethereum Classic
+- Counterparty token
+- ERC20 Token
 
 ## Building
 
