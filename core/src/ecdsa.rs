@@ -68,12 +68,14 @@ fn get_audited_asset(
         "bitcoincash" => {
             addresses = currencies::bitcoincash::get_address(public_key);
         },
+        "counterparty" => {
+            addresses = currencies::bitcoin::get_address(public_key);
+        }
         "ethereum" => {
             addresses = currencies::ethereum::get_address(public_key);
         }
         _ => {
             println!("No address derivation scheme for {}", chain);
-            addresses = vec![String::from("")];
         }
     }
 

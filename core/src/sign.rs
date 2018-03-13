@@ -11,7 +11,7 @@ use secp256k1::Message;
 use ecdsa;
 use types::{Assets, AuditedAssets, RootAuditedAssets, SignConfig};
 
-static SUPPORTED_CHAIN: &'static [&str] = &["bitcoin", "bitcoincash", "ethereum"];
+static SUPPORTED_CHAIN: &'static [&str] = &["bitcoin", "bitcoincash", "counterparty", "ethereum"];
 /// Sign a JSON file containing a list of private keys and write a audits.json file
 pub fn sign(sign_config: SignConfig) {
     let mut assets: Vec<Assets> = Vec::new();
