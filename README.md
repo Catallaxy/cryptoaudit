@@ -1,6 +1,12 @@
 # Cryptoaudit
 Catallaxy Cryptocurrencies Auditing suite.
 
+Designed by Francis Pouliot and Vincent Gauthier, implemented by Quentin Le Sceller.
+
+
+
+
+
 Supported cryptocurrencies:
 - Bitcoin
 - BitcoinCash
